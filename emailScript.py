@@ -470,8 +470,7 @@ def runScript(projectAttributes,attributesToReceive):
                             fullLine+=" "
 
                     html+= _shot_name_html(str(fullLine))
-            # html+="kachow"
-            # html+="kachow"
+          
             # html+=str(listLineIndex)
             # html+="end"+"<br>"
             # html+=str(paragraphAttributes)
@@ -485,11 +484,11 @@ def runScript(projectAttributes,attributesToReceive):
             if incrementListIndex == True:
                 if listLineIndex < len(arrayOfListAttributes)-1:
                     listLineIndex+=1
-                    # html+="boom"
+                  
 
                 # if listLineIndex < len(arrayOfListAttributes)-1:
                 #     listLineIndex+=1
-                #     html+="boom"
+                
                 # html+="<br>"
 
 
