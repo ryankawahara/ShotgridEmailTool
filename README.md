@@ -12,18 +12,18 @@ Python 3 (https://www.python.org/downloads/)
 Pip (https://pip.pypa.io/en/stable/installing/)
 Virtualenv (https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 Create a venv called email_virtualenv by executing the following code in Terminal (mac)
-'''
+```
 cd Documents; python3 -m venv email_virtualenv
-'''
+```
 Activate the email_virtualenv by executing this line in terminal:
 
-'''
+```
 source ~/Documents/email_virtualenv/bin/activate
-'''
+```
 then execute this line:
-'''
+```
 pip install git+git://github.com/shotgunsoftware/python-api.git
-'''
+```
 This will install the Shotgun API
 
 If you get an xcrun error, follow the instructions on this page: https://flaviocopes.com/fix-xcrun-error-invalid-active-developer-path/
