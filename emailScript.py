@@ -39,6 +39,7 @@ incrementListIndex=False
 arrayOfLineswithAttributes = []
 paragraphAttributes=[]
 paragraphAttributeArray=[]
+paragraphAttributeArrayFull=[]
 startingValue=0
 
 
@@ -385,8 +386,13 @@ def runScript(projectAttributes,attributesToReceive):
 
             listTitle=""
 
-            if len(paragraphAttributeArray)>0:
-                startingValue=len(paragraphAttributeArray[0])
+            # html+=str(paragraphAttributeArray)+"<br> <br>"
+            # html+=str(paragraphAttributeArrayFull)+"<br> <br>"
+
+
+
+            if len(paragraphAttributeArrayFull)>0:
+                startingValue=len(paragraphAttributeArrayFull)
             else:
                 startingValue=0
 
@@ -403,6 +409,9 @@ def runScript(projectAttributes,attributesToReceive):
 
 
             paragraphAttributes=[]
+
+            # html+=str(paragraphAttributes)+"<br> <br>"
+
 
             html+=listTitle
 
@@ -470,12 +479,15 @@ def runScript(projectAttributes,attributesToReceive):
                             fullLine+=" "
 
                     html+= _shot_name_html(str(fullLine))
-          
+            # html+="kachow"
+            # html+="kachow"
             # html+=str(listLineIndex)
             # html+="end"+"<br>"
             # html+=str(paragraphAttributes)
             if len(paragraphAttributes) > 0:
                 paragraphAttributeArray.append(paragraphAttributes)
+                for attributes in range(0,len(paragraphAttributes)):
+                    paragraphAttributeArrayFull.append(paragraphAttributes[attributes])
             # attribute=paragraphAttributeArray[0]
             # html+=str(attribute)
             # html+=str(paragraphAttributeArray)
@@ -484,11 +496,11 @@ def runScript(projectAttributes,attributesToReceive):
             if incrementListIndex == True:
                 if listLineIndex < len(arrayOfListAttributes)-1:
                     listLineIndex+=1
-                  
+                    # html+="boom"
 
                 # if listLineIndex < len(arrayOfListAttributes)-1:
                 #     listLineIndex+=1
-                
+                #     html+="boom"
                 # html+="<br>"
 
 
