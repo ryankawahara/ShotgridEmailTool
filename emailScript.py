@@ -779,10 +779,6 @@ def runScript(projectAttributes,attributesToReceive):
 
     contentToWrite = html +"</body></html>"
 
-    #delete this line eventually
-    # emailToWho="ryryk1@gmail.com"
-    # ccPeople="kawahara@gmail.com"
-
 
     # email subject part
     fullSubjectContent=""
