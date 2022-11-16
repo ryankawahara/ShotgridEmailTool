@@ -118,15 +118,13 @@ def Create_Email(content, whoToEmail,whoToCC, subjectLine, attachmentName, newEm
     outfile_name = desktopPath+'/deliverableEmail.eml'
 
     if attachmentName!="" and toggleSubmission==True:
-        # content+= "<br><br><p>Submission document attached.</p>"
 
         #this bit of code will add most recent file in downloads to email
         filename = str(attachmentName)
         filename_stripped=filename.replace(filePath,"")
         if nameToggle==True:
             filename_new=filename_stripped
-            # filename_new=filename_new.replace(" ", "")
-            # file.write("\n name:"+filename_new)
+
         else:
             filename_new=newEmailName
 
@@ -346,9 +344,7 @@ def runScript(projectAttributes,attributesToReceive):
         attributesToReceive,
     )
     deliverableSpecific=False
-    # projectAttributes=projectAttributes+arrayOfAttributeTags+arrayOfBodyAttributeTags+attributesToReceive+arrayOfSubjectAttributeTags+arrayOfClosingAttributeTags+arrayOfFileNameTags
-    # file.write(str(projectAttributes))
-    # file.write(str(projectInfo[0][""]))
+
     if str(entities[0]["type"]) == "CustomEntity26":
         projectAttributes+=deliverableSpecificAttributes
         deliverableSpecific=True
@@ -369,9 +365,7 @@ def runScript(projectAttributes,attributesToReceive):
         for key, value in tagListArray[x].items():
             temp = [key,value]
             taglistAttributes.append(temp)
-        # print(tagListArray)
         listOfTags.append(taglistAttributes)
-        # print("index: "+str(x))
         tagNamesList.append(listOfTags[x][1][1])
 
     html = _html_header()
@@ -388,7 +382,6 @@ def runScript(projectAttributes,attributesToReceive):
             if i < len(greetingMessage)-1:
                 fullGreetingLine+=" "
         html += greetingLine(str(fullGreetingLine.replace("_"," ")))
-        # html+=str(desktopPath)
 
     else:
         html+=greetingLine(greetingLinePerson)
@@ -406,8 +399,6 @@ def runScript(projectAttributes,attributesToReceive):
             if i < len(filenameSplit)-1:
                 filenameSplit+=" "
         emailFilename=fullNewFileName
-        # html += greetingLine(str(fullGreetingLine))
-        # html+=str(desktopPath)
 
     else:
         emailFilename=emailFilename
@@ -465,19 +456,12 @@ def runScript(projectAttributes,attributesToReceive):
         # attributeLength
         html+="<p></p>"
         for paragraphs in range(0,len(paragraphSplit)):
-            # html+="{"+str(attributeLength)+"}"
             multiLineEntry=False
 
             if paragraphs>0:
                 html+="<br>"
 
             listTitle=""
-
-            # html+=str(paragraphAttributeArray)+"<br> <br>"
-            # html+=str(paragraphAttributeArrayFull)+"<br> <br>"
-
-            # html+=str(paragraphSplit)
-            # html+="|"+str(paragraphAttributeArrayFull)+"|"
 
             if len(paragraphAttributeArrayFull)>0:
                 startingValue=len(paragraphAttributeArrayFull)
@@ -499,13 +483,10 @@ def runScript(projectAttributes,attributesToReceive):
             paragraphAttributes=[]
             additionalAttributes=[]
 
-            # html+=str(paragraphAttributes)+"<br> <br>"
 
             if (len(paragraphSplit[paragraphs]) > 1):
                 multiLineEntry=True
-            # html+="{"+str(attributeLength)+"}"
-            # attributeLenth+=1
-            # html+="start"+str(multiLineEntry)+"<br>"
+
             html+=listTitle
 
 
@@ -519,29 +500,21 @@ def runScript(projectAttributes,attributesToReceive):
                     additionalAttributeToggle=False
                     listLineIndex=startingValue+attributeLength
 
-                    # html+=str(listLineIndex)+"|"
                     for i in range (0,len(paragraphSplit[paragraphs])):
-                        # if (len(paragraphSplit[paragraphs]) > 1):
-                        #     multiLineEntry=True
-                        # html+="start"+str(multiLineEntry)
+
                         lineSplitToWords=paragraphSplit[paragraphs][i].split()
 
                         fullLine =""
 
                         #important
-                        # html+=str(listLineIndex)
-                        # listLineIndex=startingValue
-                        # html+=str(listLineIndex)+"|"
+
 
                         paragraphAttributes=[]
-                        # additionalAttributes=[]
-                        # html+="|"+str(i)+"|"
+
                         if (i > 0):
                             additionalAttributeToggle=True
-                        # html+="add?"+str(additionalAttributeToggle)
 
                         for i in range(0,len(lineSplitToWords)):
-                            # html+="|"+str(i)+"|"
 
                             if "{" in lineSplitToWords[i]:
                                 lineSplitToWords[i]=entities[x][arrayOfListAttributes[listLineIndex]]
@@ -549,7 +522,6 @@ def runScript(projectAttributes,attributesToReceive):
                                 incrementListIndex=True
 
                                 if additionalAttributeToggle==True:
-                                    # html+="appendAttribute"
                                     if ((arrayOfListAttributes[listLineIndex] in additionalAttributes) == False):
                                         additionalAttributes.append(arrayOfListAttributes[listLineIndex])
 
@@ -563,22 +535,16 @@ def runScript(projectAttributes,attributesToReceive):
                                 fullLine+=_image_html(lineSplitToWords[i],lineSplitToWords[i])
                                 isImage=False
                             else:
-                                # html+="|"+str("hello")+"|"
-                                # fullLine+=str("|"+str(listLineIndex)+"|")
+
 
                                 fullLine+=str(lineSplitToWords[i])
 
-                                # html+="|"+str(listLineIndex)+"|"
                             if i < len(fullLine)-1:
                                 fullLine+=" "
-                        # html+="|"+str(paragraphAttributeArrayFull)+"|"
-                        # if (i > 0):
-                        #     html+="increment"
-                        # html+="<br>"
+
                         if "{" in fullLine:
                             breakdown=fullLine.split("{")
                             for n in range (0,len(breakdown)):
-                                # html+=str(breakdown[n])
                                 if "}" in breakdown[n]:
                                     breakdown[n]="{"+breakdown[n]
                                     Dict = eval(breakdown[n])
@@ -588,25 +554,17 @@ def runScript(projectAttributes,attributesToReceive):
                                     html+=str(breakdown[n])
 
 
-                            # Dict = eval(fullLine)
-                            # html+=str((Dict.get("name")))
+
 
                         else:
                             html+=(fullLine)
 
                         html+="<br>"
 
-                    # html+="reset"+str(additionalAttributes)
-
-                        # html+=str(paragraphAttributes)
-                    # if (len(paragraphSplit[paragraphs]) > 1):
-                    #     multiLineEntry=True
-                    # html+="<br>"+str(multiLineEntry)
                 else:
 
                     isImage=False
                     listLine=attributesToReceiveRaw.split()
-                    # fullSubjectContent=""
                     fullLine=""
                     listLineIndex=0
                     for i in range(0,len(listLine)):
@@ -617,8 +575,7 @@ def runScript(projectAttributes,attributesToReceive):
                                 isImage=True
 
                             listLineIndex+=1
-                        # fullLine+=str(i)
-                        # fullLine+=str(i)
+
                         if isImage==True:
                             fullLine+=_image_html(listLine[i],listLine[i])
                         else:
@@ -628,76 +585,33 @@ def runScript(projectAttributes,attributesToReceive):
                             fullLine+=" "
 
                     html+= _shot_name_html(str(fullLine))
-            # html+="kachow"
-            # html+="kachow"
-            # html+=str(listLineIndex)
-            # html+="end"+"<br>"
-            # html+=str(paragraphAttributes)
+
             if len(paragraphAttributes) > 0:
                 paragraphAttributeArray.append(paragraphAttributes)
                 for attributes in range(0,len(paragraphAttributes)):
                     paragraphAttributeArrayFull.append(paragraphAttributes[attributes])
-            # attribute=paragraphAttributeArray[0]
-            # html+=str(attribute)
-            # html+=str(paragraphAttributeArray)
-            # html+=str([paragraphAttributeArray])
+
 
             if incrementListIndex == True:
                 if listLineIndex < len(arrayOfListAttributes)-1:
                     listLineIndex+=1
-                    # html+="boom"
-            # html+=str(len(additionalAttributes))
-                # if listLineIndex < len(arrayOfListAttributes)-1:
-                #     listLineIndex+=1
-                #     html+="boom"
-                # html+="<br>"
-                # html+="<br>"
-                # html+=str(len(additionalAttributes))+"|"+str(startingValue)
+
                 attributeLength=len(additionalAttributes)
                 if attributeLength > 0:
                     attributeLength+=1
-        # startingValue+=len(additionalAttributes)
 
-            # html+="|"+str(paragraphAttributeArrayFull)+"|"
-
-        #     html+="<br>"
-        # html+="<br>"
-            # html+="<br>"+str(multiLineEntry)
         valueCounter=0
-        # html+="ouptput"+str(paragraphAttributeArray[0])
 
 
-    # if runGrouped==False and "groupedList" in formatType:
-    #     # html+="<p>Shot List By Item:</p>"
-    #     for x in range(0,len(entities)):
-    #         valueCounter=0
-    #         values=dict(entities[x])
-    #         for i,j in values.items():
-    #             if i!='type' and i!='id':
-    #                 html+=(_shot_name_html(str(j)))
-    #                 valueCounter+=1
-    #
-    #         # html+=(_shot_name_html(str(valueCounter)))
-    #         if valueCounter>=2:
-    #             html+=("<br>")
 
     res = defaultdict(list)
     {res[key].append(sub[key]) for sub in entities for key in sub}
-    # html+="<p>Shot List:</p>"
-
-
-    # for x in range(0,len(entities)):
-    # html+=_shot_name_html(str(dict(res)))
 
     groupedValues=dict(res)
 
     if  "separateLists" in formatType:
-        # html+="<br>"
-        # html+="Shot List by Type:"
         for i,j in groupedValues.items():
             if i!='type' and i!='id':
-
-
 
                 if i=="sg_ins_deliverable_long_name":
                     i="Shot List"
@@ -706,8 +620,6 @@ def runScript(projectAttributes,attributesToReceive):
                     i=str(i.replace("sg_",""))
                     i=str(i.replace("_"," "))
                     i=string.capwords(i)
-
-
 
 
                 html+=("<b>"+str(i)+":"+"</b>")
@@ -719,22 +631,7 @@ def runScript(projectAttributes,attributesToReceive):
                         html+=_shot_name_html(j[x])
             html+="<br>"
 
-                # html+=(_shot_name_html(str(j)))
-            # html+=("<br>")
-        # values=dict(entities[x])
-        # for i,j in values.items():
-        #     if i!='type' and i!='id':
-        #         html+=(_shot_name_html(str(j)))
-        # html+=("<br>")
 
-
-    # Generates to: field in email from Project attribute
-    # emailToWho = ""
-    # emailArray = str(((entities[0]['project.Project.sg_mainemailrecipient']))).split(",")
-    # for x in range(0,len(emailArray)):
-    #     emailToWho+=str(emailArray[x]);
-    #     if (x<len(emailArray)-1):
-    #         emailToWho+=", "
     if attachFileToggle==True:
         #resumehere
         html+="<br>Submission document attached.<br>"
@@ -802,11 +699,6 @@ def runScript(projectAttributes,attributesToReceive):
         emailSubject=(fullSubjectContent)
 
 
-    # submission_ID=projectInfo[0]["sg_ins_deliverable_submission_id"]
-    # emailSubject=submission_ID
-
-
-    # latest_file=""
     if len(checkFolderEmpty)==0 or attachFileToggle==False:
         latest_file=""
 
@@ -816,9 +708,6 @@ def runScript(projectAttributes,attributesToReceive):
         latest_file = max(list_of_files, key=os.path.getctime)
 
         useOriginalName=True
-        # file.write("\n"+latest_file.replace(filePath,""))
-        #rename here
-        # renameEmail=emailFilename+str(split_tup[1])
 
         #manipulates CSV
         split_tup = os.path.splitext(latest_file)
